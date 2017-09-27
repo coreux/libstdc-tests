@@ -23,7 +23,7 @@ tests/Makefile
 tests/freestanding/Makefile
 ])
 
-AC_CONFIG_FILES([tests/run-cpp],[chmod +x t/run-cpp])
+AC_CONFIG_FILES([tests/run-cpp],[chmod +x tests/run-cpp])
 ```
 
 You should also add the following, if not already present:-
