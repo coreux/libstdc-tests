@@ -46,6 +46,7 @@ AC_SUBST([stdc_tests_sizeof_long_long],[$ac_cv_sizeof_long_long])
 AC_DEFUN([STDC_TESTS_OUTPUT],[
  AC_CONFIG_FILES($1[/Makefile])
  AC_CONFIG_FILES($1[/testdefs.h])
+ AC_CONFIG_FILES($1[/lib/Makefile])
  AC_CONFIG_FILES($1[/freestanding/Makefile])
  AC_CONFIG_FILES($1[/hosted/Makefile])
  AC_CONFIG_FILES($1[/run-cpp],[chmod +x ]$1[/run-cpp])
