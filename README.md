@@ -45,6 +45,9 @@ Within `configure.ac`, the following shell variables govern which tests will be 
 | `STDC_ENABLE_TESTS`              | Enables or disables all tests          |
 | `STDC_ENABLE_FREESTANDING_TESTS` | Enables or disables freestanding tests |
 | `STDC_ENABLE_HOSTED_TESTS`       | Enables or disables hosted tests       |
+| `STDC_ENABLE_C95_TESTS`          | Enables or disables tests for >= C95   |
+| `STDC_ENABLE_C99_TESTS`          | Enables or disables tests for >= C99   |
+| `STDC_ENABLE_C11_TESTS`          | Enables or disables tests for C11      |
 
 If these variables are set to a value other than `yes` prior to including `conftests.m4`, they will disable the corresponding tests.
 
@@ -53,6 +56,8 @@ tested_, not the tests themselves. If you are testing a freestanding implementat
 versa (the hosted suite incorporates all of the freestanding tests).
 
 By default, all tests will be built and executed (but see following section for information about compiler flags that are used).
+
+Disabling C95 tests will also disable C99 and C11 tests (and so forth).
 
 ### Controlling the test environment
 

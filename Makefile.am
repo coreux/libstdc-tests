@@ -34,17 +34,29 @@ freestanding_tests = \
 	freestanding/c90-limits-long \
 	freestanding/c90-limits-char \
 	freestanding/c90-stdarg-00 \
-	freestanding/c90-stddef-00 \
+	freestanding/c90-stddef-00
+	
+if STDC_ENABLE_C95_TESTS
+freestanding_tests += \
 	freestanding/c95-support \
-	freestanding/c95-iso646-00 \
+	freestanding/c95-iso646-00
+
+if STDC_ENABLE_C99_TESTS
+freestanding_tests += \
 	freestanding/c99-support \
 	freestanding/c99-limits-longlong \
 	freestanding/c99-stdbool-00 \
-	freestanding/c99-stdint-00 \
+	freestanding/c99-stdint-00
+
+if STDC_ENABLE_C11_TESTS
+freestanding_tests += \
 	freestanding/c11-support \
 	freestanding/c11-stdalign-00 \
 	freestanding/c11-stdnoreturn-00
 
+endif
+endif
+endif
 endif
 
 if STDC_ENABLE_HOSTED_TESTS
@@ -57,17 +69,29 @@ hosted_tests = \
 	hosted/c90-limits-long \
 	hosted/c90-limits-char \
 	hosted/c90-stdarg-00 \
-	hosted/c90-stddef-00 \
+	hosted/c90-stddef-00
+
+if STDC_ENABLE_C95_TESTS
+hosted_tests += \
 	hosted/c95-support \
-	hosted/c95-iso646-00 \
+	hosted/c95-iso646-00
+
+if STDC_ENABLE_C99_TESTS
+hosted_tests += \
 	hosted/c99-support \
 	hosted/c99-limits-longlong \
 	hosted/c99-stdbool-00 \
-	hosted/c99-stdint-00 \
+	hosted/c99-stdint-00
+
+if STDC_ENABLE_C11_TESTS
+hosted_tests += \
 	hosted/c11-support \
 	hosted/c11-stdalign-00 \
 	hosted/c11-stdnoreturn-00
 
+endif
+endif
+endif
 endif
 
 TESTS = $(freestanding_tests) $(hosted_tests)

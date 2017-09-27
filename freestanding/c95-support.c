@@ -1,4 +1,4 @@
-/* Test __STDC_VERSION__ for C95 */
+/* Test __STDC_VERSION__ for C99 */
 
 /* Copyright 2017 Mo McRoberts.
  *
@@ -21,10 +21,12 @@ int
 main(void)
 {
 #ifndef __STDC_VERSION__
-	testlogf(__FILE__, TEST_FAIL, "__STDC_VERSION__ is not defined by this implementation\n");
-	return TEST_FAIL;
-#else
-	TESTEXPECTGE(__STDC_VERSION__, 199409L, "%ld");
+	testlogf(__FILE__, TEST_SKIP, "__STDC_VERSION__ is not defined by this implementation\n");
+	return TEST_SKIP;
+#elif __STDC_VERSION__ >= 199409L
 	return TEST_PASS;
+#else
+	testlogf(__FILE__, TEST_SKIP, "__STDC_VERSION__ (%ld) is not >= 199409L\n", __STDC_VERSION__);
+	return TEST_SKIP;
 #endif
 }

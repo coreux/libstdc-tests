@@ -21,8 +21,8 @@ int
 main(void)
 {
 #ifndef __STDC__
-	testlogf(__FILE__, TEST_FAIL, "__STDC_ is not defined by this implementation\n");
-	return TEST_FAIL;
+	testlogf(__FILE__, TEST_SKIP, "__STDC__ is not defined by this implementation\n");
+	return TEST_SKIP;
 #else
 	testlogf(__FILE__, TEST_PASS, "OK: __STDC__ is defined\n");
 	return TEST_PASS;
