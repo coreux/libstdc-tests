@@ -25,9 +25,20 @@ main(void)
 {
 	/* Test against minimum-magnitude values specified in Annex E */
 	TESTEXPECT(CHAR_BIT, 8, "%d")
-	TESTEXPECT(CHAR_MAX, 127, "%d");
-	TESTEXPECT(CHAR_MIN, -128, "%d");
+	TESTEXPECT(SCHAR_MAX, 127, "%d");
+	TESTEXPECT(SCHAR_MIN, -128, "%d");
 	TESTEXPECT(UCHAR_MAX, 255, "%d");
 	TESTEXPECTGE(MB_LEN_MAX, 1, "%d");
+	
+	if(CHAR_MAX == SCHAR_MAX)
+	{
+		TESTEXPECT(CHAR_MIN, -128, "%d");
+		TESTEXPECT(CHAR_MAX, 127, "%d");
+	}
+	else
+	{
+		TESTEXPECT(CHAR_MIN, 0, "%d");
+		TESTEXPECT(CHAR_MAX, 255, "%d");
+	}
 	return TEST_PASS;
 }
