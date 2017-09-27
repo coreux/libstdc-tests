@@ -14,13 +14,19 @@
 ##  See the License for the specific language governing permissions and
 ##  limitations under the License.
 
-AM_CPPFLAGS = $(STDC_TEST_CPPFLAGS) -I${builddir}/.. -I${srcdir}/..
+AM_CPPFLAGS = $(STDC_TEST_CPPFLAGS) $(STDC_TEST_INCLUDES) -I${builddir}/.. -I${srcdir}/..
 AM_LDFLAGS = $(STDC_TEST_LDFLAGS)
 DEFS = $(STDC_TEST_DEFS) -U__STDC_HOSTED__ -D__STDC_HOSTED__=0
 LIBS = ../libtestlib.a $(STDC_TEST_LIBS)
 
 check_PROGRAMS = \
-	c90-stdarg-00
+	freestanding \
+	c90-support \
+	c90-stdarg-00 \
+	c90-limits-int c90-limits-short c90-limits-long c90-limits-char \
+	c95-support \
+	c99-support \
+	c11-support
 
 if STDC_ENABLE_FREESTANDING_TESTS
 

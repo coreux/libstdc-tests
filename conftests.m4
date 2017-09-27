@@ -1,4 +1,4 @@
-## Standard C library test-suite
+## M4 fragment for performing host checks needed for the testsuite
 
 ## Copyright 2017 Mo McRoberts.
 ##
@@ -14,19 +14,13 @@
 ##  See the License for the specific language governing permissions and
 ##  limitations under the License.
 
-DIST_SUBDIRS = freestanding
-
-EXTRA_DIST = README.md LICENSE-2.0 run-cpp.in testdefs.h.in conftests.m4
-
-if STDC_ENABLE_TESTS
-
-SUBDIRS = . freestanding
-
-noinst_SCRIPTS = run-cpp
-
-check_LIBRARIES = libtestlib.a
-
-libtestlib_a_SOURCES = testlib.h \
-	testlog.c
-
-endif
+AC_CHECK_SIZEOF([char])
+AC_SUBST([stdc_tests_sizeof_char],[$ac_cv_sizeof_char])
+AC_CHECK_SIZEOF([int])
+AC_SUBST([stdc_tests_sizeof_int],[$ac_cv_sizeof_int])
+AC_CHECK_SIZEOF([short])
+AC_SUBST([stdc_tests_sizeof_short],[$ac_cv_sizeof_short])
+AC_CHECK_SIZEOF([long])
+AC_SUBST([stdc_tests_sizeof_long],[$ac_cv_sizeof_long])
+AC_CHECK_SIZEOF([long long])
+AC_SUBST([stdc_tests_sizeof_long_long],[$ac_cv_sizeof_long_long])

@@ -1,4 +1,4 @@
-/* Perform logging during tests */
+/* Test __STDC___ for C90 */
 
 /* Copyright 2017 Mo McRoberts.
  *
@@ -15,25 +15,16 @@
  *  limitations under the License.
  */
 
-#ifdef HAVE_CONFIG_H
-# include "config.h"
-#endif
-
-#include <stdio.h>
-#include <stdarg.h>
-
 #include "testlib.h"
 
-void
-testlogf(const char *file, int severity, const char *format, ...)
+int
+main(void)
 {
-	va_list ap;
-	
-	/* The severity (TEST_xxx constants) is not currently used */
-	(void) severity;
-	
-	va_start(ap, format);
-	fprintf(stderr, "%s: ", file);
-	vfprintf(stderr, format, ap);
-	va_end(ap);
+#ifndef __STDC__
+	testlogf(__FILE__, TEST_FAIL, "__STDC_ is not defined by this implementation\n");
+	return TEST_FAIL;
+#else
+	testlogf(__FILE__, TEST_PASS, "OK: __STDC__ is defined\n");
+	return TEST_PASS;
+#endif
 }

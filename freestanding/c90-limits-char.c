@@ -1,4 +1,4 @@
-/* Perform logging during tests */
+/* Test the C90 constants in <limits.h> */
 
 /* Copyright 2017 Mo McRoberts.
  *
@@ -15,25 +15,19 @@
  *  limitations under the License.
  */
 
-#ifdef HAVE_CONFIG_H
-# include "config.h"
-#endif
-
-#include <stdio.h>
-#include <stdarg.h>
+#include <limits.h>
 
 #include "testlib.h"
+#include "testdefs.h"
 
-void
-testlogf(const char *file, int severity, const char *format, ...)
+int
+main(void)
 {
-	va_list ap;
-	
-	/* The severity (TEST_xxx constants) is not currently used */
-	(void) severity;
-	
-	va_start(ap, format);
-	fprintf(stderr, "%s: ", file);
-	vfprintf(stderr, format, ap);
-	va_end(ap);
+	/* Test against minimum-magnitude values specified in Annex E */
+	TESTEXPECT(CHAR_BIT, 8, "%d")
+	TESTEXPECT(CHAR_MAX, 127, "%d");
+	TESTEXPECT(CHAR_MIN, -128, "%d");
+	TESTEXPECT(UCHAR_MAX, 255, "%d");
+	TESTEXPECTGE(MB_LEN_MAX, 1, "%d");
+	return TEST_PASS;
 }

@@ -18,3 +18,4 @@ a.out
 Makefile
 Makefile.in
 /run-cpp
+/testdefs.h
