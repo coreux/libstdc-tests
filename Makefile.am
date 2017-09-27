@@ -29,6 +29,7 @@ if STDC_ENABLE_FREESTANDING_TESTS
 freestanding_tests = \
 	freestanding/freestanding \
 	freestanding/c90-support \
+	freestanding/c90-float-00 \
 	freestanding/c90-limits-int \
 	freestanding/c90-limits-short \
 	freestanding/c90-limits-long \
@@ -64,6 +65,7 @@ if STDC_ENABLE_HOSTED_TESTS
 hosted_tests = \
 	hosted/hosted \
 	hosted/c90-support \
+	hosted/c90-float-00 \
 	hosted/c90-limits-int \
 	hosted/c90-limits-short \
 	hosted/c90-limits-long \

@@ -25,6 +25,7 @@ LIBS = ../lib/libtestlib.a $(STDC_TEST_LIBS)
 check_PROGRAMS = \
 	hosted \
 	c90-support \
+	c90-float-00 \
 	c90-limits-int c90-limits-short c90-limits-long c90-limits-char \
 	c90-stdarg-00 \
 	c90-stddef-00 \
