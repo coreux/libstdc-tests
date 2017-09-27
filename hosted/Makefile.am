@@ -1,4 +1,4 @@
-## C Library freestanding environment tests
+## C Library hosted environment tests
 
 ## Copyright 2017 Mo McRoberts.
 ##
@@ -14,13 +14,13 @@
 ##  See the License for the specific language governing permissions and
 ##  limitations under the License.
 
-AM_CPPFLAGS = $(STDC_TEST_CPPFLAGS) -I${builddir}/.. -I${srcdir}/.. $(STDC_TEST_INCLUDES) $(STDC_TEST_FREESTANDING_CPPFLAGS)
+AM_CPPFLAGS = $(STDC_TEST_CPPFLAGS) -I${builddir}/.. -I${srcdir}/.. $(STDC_TEST_INCLUDES) $(STDC_TEST_HOSTED_CPPFLAGS)
 AM_LDFLAGS = $(STDC_TEST_LDFLAGS)
 DEFS = $(STDC_TEST_DEFS)
 LIBS = ../libtestlib.a $(STDC_TEST_LIBS)
 
 check_PROGRAMS = \
-	freestanding \
+	hosted \
 	c90-support \
 	c90-limits-int c90-limits-short c90-limits-long c90-limits-char \
 	c90-stdarg-00 \
@@ -35,7 +35,7 @@ check_PROGRAMS = \
 	c11-stdalign-00 \
 	c11-stdnoreturn-00
 
-if STDC_ENABLE_FREESTANDING_TESTS
+if STDC_ENABLE_HOSTED_TESTS
 
 TESTS = $(check_PROGRAMS)
 

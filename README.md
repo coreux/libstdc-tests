@@ -40,12 +40,19 @@ Simply add the directory containing this tree to `SUBDIRS` as you would normally
  
 Within `configure.ac`, the following shell variables govern which tests will be invoked:-
  
-| Variable                         | Description                   |
-|----------------------------------|-------------------------------|
-| `STDC_ENABLE_TESTS`              | Enables or disables all tests |
-| `STDC_ENABLE_FREESTANDING_TESTS` | Enables or disables all tests |
+| Variable                         | Description                            |
+|----------------------------------|----------------------------------------|
+| `STDC_ENABLE_TESTS`              | Enables or disables all tests          |
+| `STDC_ENABLE_FREESTANDING_TESTS` | Enables or disables freestanding tests |
+| `STDC_ENABLE_HOSTED_TESTS`       | Enables or disables hosted tests       |
 
 If these variables are set to a value other than `yes` prior to including `conftests.m4`, they will disable the corresponding tests.
+
+Note that `freestanding` and `hosted` refer to the _environments which will be
+tested_, not the tests themselves. If you are testing a freestanding implementation, you should set `STDC_ENABLE_HOSTED_TESTS` to `no`, and vice
+versa (the hosted suite incorporates all of the freestanding tests).
+
+By default, all tests will be built and executed (but see following section for information about compiler flags that are used).
 
 ### Controlling the test environment
 
@@ -61,6 +68,10 @@ The following shell variables can be set prior to including `conftests.m4` to ad
 | `STDC_TEST_INCLUDES` | C header search path                             |
 | `STDC_TEST_LDFLAGS`  | Linker flags                                     |
 | `STDC_TEST_LIBS`     | Additional libraries to be linked into the tests |
+| `STDC_TEST_FREESTANDING_CPPFLAGS` | C preprocessor flags only for freestanding tests |
+| `STDC_TEST_HOSTED_CPPFLAGS` | C preprocessor flags only for hosted tests |
+
+`STDC_TEST_FREESTANDING_CPPFLAGS` defaults to `-U__STDC_HOSTED__ -D__STDC_HOSTED__=0` if not provided.
 
 `AC_SUBST()` will be invoked for each of these variables.
 
@@ -105,7 +116,7 @@ The test suite assumes that the system provides a working `vfprintf()` and the p
 
 The suite tests the _host_ system, but consisting of a set of runtime tests cannot be used in a cross-compilation environment unless the _build_ system is capable of running executables for the host.
 
-In principle it should be possible to run the tests via tools such as [QEmu](https://www.qemu.org), but this has not yet been attempted.
+In principle it should be possible to run the tests via tools such as [QEmu][2], but this has not yet been attempted.
 
 ## Copyright and licensing
 
@@ -114,3 +125,4 @@ This project is licensed according to the terms of the [Apache Licence, version 
 Copyright © 2017 Mo McRoberts.
 
 [1]: https://www.gnu.org/software/automake/
+[2]: https://www.qemu.org

@@ -14,13 +14,13 @@
 ##  See the License for the specific language governing permissions and
 ##  limitations under the License.
 
-DIST_SUBDIRS = freestanding
+DIST_SUBDIRS = freestanding hosted
 
 EXTRA_DIST = README.md LICENSE-2.0 run-cpp.in testdefs.h.in conftests.m4
 
 if STDC_ENABLE_TESTS
 
-SUBDIRS = . freestanding
+SUBDIRS = . freestanding hosted
 
 noinst_SCRIPTS = run-cpp
 
