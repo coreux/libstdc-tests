@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository contains a set of tests designed to determine the conformance to various standards of a Standard C library (often known as `libc`), and is intended to be integrated into an [automake](https://www.gnu.org/software/automake/) project.
+This repository contains a set of tests designed to determine the conformance to various standards of a Standard C library (often known as `libc`), and is intended to be integrated into an [automake][1] project.
 
 ## Usage
 
@@ -40,9 +40,9 @@ Simply add the directory containing this tree to `SUBDIRS` as you would normally
  
 Within `configure.ac`, the following shell variables govern which tests will be invoked:-
  
-| Variable | Description |
-|-------------|-----------------|
-| `STDC_ENABLE_TESTS` | Enables or disables all tests |
+| Variable                         | Description                   |
+|----------------------------------|-------------------------------|
+| `STDC_ENABLE_TESTS`              | Enables or disables all tests |
 | `STDC_ENABLE_FREESTANDING_TESTS` | Enables or disables all tests |
 
 If these variables are set to a value other than `yes` prior to including `conftests.m4`, they will disable the corresponding tests.
@@ -53,14 +53,14 @@ It is often desirable for tests to be compiled with different flags than those u
 
 The following shell variables can be set prior to including `conftests.m4` to adjust the test compliation environment:-
 
-| Variable | Description |
-|------------|-----|
-| `STDC_TEST_CPP` | C preprocessor to use (defaults to `$CPP`) |
-| `STDC_TEST_CPPFLAGS` | C preprocessor flags |
-| `STDC_TEST_DEFS` | Preprocessor definitions (`-D` and `-U` flags) |
-| `STDC_TEST_INCLUDES` | C header search path |
-| `STDC_TEST_LDFLAGS` | Linker flags |
-| `STDC_TEST_LIBS` | Additional libraries to be linked into the tests |
+| Variable             | Description                                      |
+|----------------------|--------------------------------------------------|
+| `STDC_TEST_CPP`      | C preprocessor to use (defaults to `$CPP`)       |
+| `STDC_TEST_CPPFLAGS` | C preprocessor flags                             |
+| `STDC_TEST_DEFS`     | Preprocessor definitions (`-D` and `-U` flags)   |
+| `STDC_TEST_INCLUDES` | C header search path                             |
+| `STDC_TEST_LDFLAGS`  | Linker flags                                     |
+| `STDC_TEST_LIBS`     | Additional libraries to be linked into the tests |
 
 `AC_SUBST()` will be invoked for each of these variables.
 
@@ -112,3 +112,5 @@ In principle it should be possible to run the tests via tools such as [QEmu](htt
 This project is licensed according to the terms of the [Apache Licence, version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 Copyright © 2017 Mo McRoberts.
+
+[1]: https://www.gnu.org/software/automake/
