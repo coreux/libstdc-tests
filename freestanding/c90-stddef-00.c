@@ -19,8 +19,37 @@
 
 #include "testlib.h"
 
+union offsetof_union {
+	int m1;
+	char *m2;
+	long m3;
+};
+
 int
 main(void)
 {
+	static const char teststr[] = "C90 <stddef.h> tests";
+	
+	ptrdiff_t ptrdiff;
+	size_t size;
+	wchar_t wc;
+	char *np;
+	const char *sp;
+	
+	size = sizeof(teststr);
+	TESTEXPECT((long) size, 21, "%ld");
+	
+	np = NULL;
+	TESTEXPECT((long) np, (long) 0, "%ld");
+	
+	sp = &(teststr[size - 5]);
+	ptrdiff = sp - teststr;
+	TESTEXPECT((long) ptrdiff, (long) (size - 5), "%ld");
+	
+	wc = 0xffff;
+	TESTEXPECT((long) wc, 0xffffL, "%ld");
+	
+	TESTEXPECT(offsetof(union offsetof_union, m3), 0, "%d");
+	
 	return TEST_PASS;
 }
