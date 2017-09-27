@@ -23,7 +23,44 @@
 int
 main(void)
 {
-	return TEST_SKIP;
+	int x, y;
+	
+	TESTEXPECT((2 and 3), (2 && 3), "%d");
+	
+	x = 7;
+	x and_eq 4;
+	y = 7;
+	y &= 4;
+	TESTEXPECTS(x, y, "(x and_eq 4)", "%d");
+
+	TESTEXPECT((126 bitand 12), (126 & 12), "%d");
+
+	TESTEXPECT((129 bitor 15), (129 | 15), "%d");
+	
+	TESTEXPECT((compl 128), (~128), "%d");
+	
+	TESTEXPECT((not 1), (!1), "%d");
+	TESTEXPECT((not 0), (!0), "%d");
+	
+	TESTEXPECT((1 or 0), (1 || 0), "%d");
+	TESTEXPECT((0 or 2), (0 || 2), "%d");
+	TESTEXPECT((1 or -1), (1 || -1), "%d");
+	
+	x = 200;
+	x or_eq 31;
+	y = 200;
+	y |= 31;
+	TESTEXPECTS(x, y, "(x or_eq 31)", "%d");
+	
+	TESTEXPECT((254 xor 12), (254 ^ 12), "%d");
+	
+	x = 14;
+	x xor_eq 25;
+	y = 14;
+	y ^= 25;
+	TESTEXPECTS(x, y, "(x xor_eq 25)", "%d");
+
+	return TEST_PASS;
 }
 
 #else /* C95 */

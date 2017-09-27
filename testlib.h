@@ -36,6 +36,8 @@
 
 # define TESTEXPECT(var, expected, formatstr) \
 	TESTEXPECT_(var, #var, ==, "==", expected, formatstr)
+# define TESTEXPECTS(var, expected, varname, formatstr) \
+	TESTEXPECT_(var, varname, ==, "==", expected, formatstr)
 # define TESTEXPECTLT(var, expected, formatstr) \
 	TESTEXPECT_(var, #var, <, "<", expected, formatstr)
 # define TESTEXPECTLE(var, expected, formatstr) \
