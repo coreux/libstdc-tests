@@ -24,7 +24,7 @@ main(void)
 {
 	if(__STDC_HOSTED__ < 1)
 	{
-		testlogf(__FILE__, TEST_FAIL, "SKIP: __STDC_HOSTED__ is not defined by this implementation\n");
+		testlogf(__FILE__, TEST_FAIL, "SKIP: __STDC_HOSTED__ is not defined by this implementation, expected __STDC_HOSTED__ = 1\n");
 		return TEST_FAIL;
 	}
 	TESTEXPECT(__STDC_HOSTED__, 1, "%d");
