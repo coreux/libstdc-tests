@@ -24,7 +24,7 @@ main(void)
 	testlogf(__FILE__, TEST_SKIP, "__STDC__ is not defined by this implementation\n");
 	return TEST_SKIP;
 #else
-	testlogf(__FILE__, TEST_PASS, "OK: __STDC__ is defined\n");
+	TESTEXPECT(__STDC__, 1, "%d");
 	return TEST_PASS;
 #endif
 }
