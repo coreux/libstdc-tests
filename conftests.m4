@@ -20,6 +20,7 @@ test -z "$STDC_ENABLE_C99_TESTS" && STDC_ENABLE_C99_TESTS=yes
 test -z "$STDC_ENABLE_C11_TESTS" && STDC_ENABLE_C11_TESTS=yes
 test -z "$STDC_ENABLE_FREESTANDING_TESTS" && STDC_ENABLE_FREESTANDING_TESTS=yes
 test -z "$STDC_ENABLE_HOSTED_TESTS" && STDC_ENABLE_HOSTED_TESTS=yes
+test -z "$STDC_ENABLE_UNIX_TESTS" && STDC_ENABLE_UNIX_TESTS=yes
 test -z "$STDC_TEST_CPP" && STDC_TEST_CPP='${CPP}'
 
 AM_CONDITIONAL([STDC_ENABLE_TESTS],[test x"$STDC_ENABLE_TESTS" = x"yes"])
@@ -29,6 +30,7 @@ AM_CONDITIONAL([STDC_ENABLE_C11_TESTS],[test x"$STDC_ENABLE_C11_TESTS" = x"yes"]
 
 AM_CONDITIONAL([STDC_ENABLE_FREESTANDING_TESTS],[test x"$STDC_ENABLE_FREESTANDING_TESTS" = x"yes"])
 AM_CONDITIONAL([STDC_ENABLE_HOSTED_TESTS],[test x"$STDC_ENABLE_HOSTED_TESTS" = x"yes"])
+AM_CONDITIONAL([STDC_ENABLE_UNIX_TESTS],[test x"$STDC_ENABLE_UNIX_TESTS" = x"yes"])
 
 AC_SUBST([STDC_TEST_CPP])
 AC_SUBST([STDC_TEST_CPPFLAGS])
@@ -37,6 +39,7 @@ AC_SUBST([STDC_TEST_LDFLAGS])
 AC_SUBST([STDC_TEST_LIBS])
 AC_SUBST([STDC_TEST_FREESTANDING_CPPFLAGS])
 AC_SUBST([STDC_TEST_HOSTED_CPPFLAGS])
+AC_SUBST([STDC_TEST_UNIX_CPPFLAGS])
 
 AC_CHECK_SIZEOF([char])
 AC_SUBST([stdc_tests_sizeof_char],[$ac_cv_sizeof_char])
@@ -49,11 +52,35 @@ AC_SUBST([stdc_tests_sizeof_long],[$ac_cv_sizeof_long])
 AC_CHECK_SIZEOF([long long])
 AC_SUBST([stdc_tests_sizeof_long_long],[$ac_cv_sizeof_long_long])
 
+dnl Test the test environment itself
+
+save_CPP="$CPP" ; CPP="$STDC_TEST_CPP"
+save_CPPFLAGS="$CPPFLAGS" ; CPPFLAGS="$STDC_TEST_CPPFLAGS $STDC_TEST_DEFS"
+save_DEFS="$DEFS" ; DEFS=""
+save_LDFLAGS="$LDFLAGS" ; LDFLAGS="$STDC_TEST_LDFLAGS"
+save_LIBS="$LIBS" ; LIBS="$STDC_TEST_LIBS"
+
+CPPFLAGS="$STDC_TEST_CPPFLAGS $STDC_TEST_DEFS $STDC_TEST_UNIX_CPPFLAGS"
+AC_MSG_CHECKING([for <unistd.h> in the test environment])
+AC_TRY_COMPILE([#include <unistd.h>],,[
+  AC_MSG_RESULT([found])
+  stdc_tests_have_unistd_h=1],[
+  AC_MSG_RESULT([not found])
+  ])
+AC_SUBST([stdc_tests_have_unistd_h])
+
+CPP="$save_CPP"
+CPPFLAGS="$save_CPPFLAGS"
+DEFS="$save_DEFS"
+LDFLAGS="$save_LDFLAGS"
+LIBS="$save_LIBS"
+
 AC_DEFUN([STDC_TESTS_OUTPUT],[
  AC_CONFIG_FILES($1[/Makefile])
  AC_CONFIG_FILES($1[/testdefs.h])
  AC_CONFIG_FILES($1[/lib/Makefile])
  AC_CONFIG_FILES($1[/freestanding/Makefile])
  AC_CONFIG_FILES($1[/hosted/Makefile])
+ AC_CONFIG_FILES($1[/unix/Makefile])
  AC_CONFIG_FILES($1[/run-cpp],[chmod +x ]$1[/run-cpp])
 ])

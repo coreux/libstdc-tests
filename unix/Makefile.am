@@ -1,4 +1,4 @@
-## Standard C library test-suite
+## C Library Unix environment tests
 
 ## Copyright 2017 Mo McRoberts.
 ##
@@ -14,15 +14,13 @@
 ##  See the License for the specific language governing permissions and
 ##  limitations under the License.
 
-check_LIBRARIES = libtestlib.a
+AM_CPPFLAGS = $(STDC_TEST_CPPFLAGS) \
+	-I${builddir}/.. -I${srcdir}/.. \
+	-I${builddir}/../lib -I${srcdir}/../lib \
+	$(STDC_TEST_INCLUDES) $(STDC_TEST_UNIX_CPPFLAGS)
+AM_LDFLAGS = $(STDC_TEST_LDFLAGS)
+DEFS = $(STDC_TEST_DEFS)
+LIBS = ../lib/libtestlib.a $(STDC_TEST_LIBS)
 
-libtestlib_a_SOURCES = testlib.h \
-	testlog.c
-
-dist_noinst_HEADERS = hosted-begin.h hosted-end.h \
-	freestanding-begin.h freestanding-end.h \
-	unix-begin.h unix-end.h \
-	c90-begin.h c90-end.h \
-	c95-begin.h c95-end.h \
-	c99-begin.h c99-end.h \
-	c11-begin.h c11-end.h
+check_PROGRAMS = \
+	unix

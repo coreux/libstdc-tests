@@ -14,13 +14,13 @@
 ##  See the License for the specific language governing permissions and
 ##  limitations under the License.
 
-DIST_SUBDIRS = lib freestanding hosted
+DIST_SUBDIRS = lib freestanding hosted unix
 
 EXTRA_DIST = README.md LICENSE-2.0 run-cpp.in testdefs.h.in conftests.m4
 
 if STDC_ENABLE_TESTS
 
-SUBDIRS = lib freestanding hosted .
+SUBDIRS = lib freestanding hosted unix .
 
 noinst_SCRIPTS = run-cpp
 
@@ -96,6 +96,13 @@ endif
 endif
 endif
 
-TESTS = $(freestanding_tests) $(hosted_tests)
+if STDC_ENABLE_UNIX_TESTS
+
+unix_tests = \
+	unix/unix
+
+endif
+
+TESTS = $(freestanding_tests) $(hosted_tests) $(unix_tests)
 
 endif
