@@ -19,6 +19,10 @@
 
 #ifndef TEST_WILL_SKIP
 
+# ifdef TEST_HAVE_UNISTD_H
+#  include <unistd.h>
+# endif
+
 # ifndef _POSIX_VERSION
 #  define _POSIX_VERSION               -1
 # endif
@@ -31,7 +35,7 @@ main(void)
 		testlogf(__FILE__, TEST_SKIP, "_POSIX_VERSION is not defined by this implementation, expected _POSIX_VERSION >= 199808L\n");
 		return TEST_SKIP;
 	}
-	TESTEXPECTGE(_POSIX_VERSION, 1999808L, "%ld");
+	TESTEXPECTGE(_POSIX_VERSION, 199808L, "%ld");
 	return TEST_PASS;
 }
 
