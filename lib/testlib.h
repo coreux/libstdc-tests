@@ -23,29 +23,52 @@
 # define TEST_SKIP                     77
 # define TEST_ERR                      99
 
-# define TESTEXPECT_(var, varname, op, opname, expected, formatstr) \
-	if(!((var) op (expected))) \
+# define TESTEXPECTSTR(var, varname, expr, exprstr, formatstr) \
+	if(!(expr)) \
 	{ \
-		testlogf(__FILE__, TEST_FAIL, varname " = " formatstr ", expected " varname " " opname " " formatstr "\n", var, expected); \
+		testlogf(__FILE__, TEST_FAIL, "%s = " formatstr ", expected %s\n", varname, var, exprstr); \
 		return TEST_FAIL; \
 	} \
 	else \
 	{ \
-		testlogf(__FILE__, TEST_PASS, "OK: " varname " = " formatstr " (expected " varname " " opname " " formatstr ")\n", var, expected); \
+		testlogf(__FILE__, TEST_PASS, "OK: %s = " formatstr ", expected %s\n", varname, var, exprstr); \
 	}
 
+# define TESTEXPECTSTRVAL(var, varname, expr, exprstr, expectval, formatstr) \
+	if(!(expr)) \
+	{ \
+		testlogf(__FILE__, TEST_FAIL, "%s = " formatstr ", expected %s = " formatstr "\n", varname, var, exprstr, expectval); \
+		return TEST_FAIL; \
+	} \
+	else \
+	{ \
+		testlogf(__FILE__, TEST_PASS, "OK: %s = " formatstr ", expected %s = " formatstr "\n", varname, var, exprstr, expectval); \
+	}
+
+
+# define TESTEXPECTE(var, expr, formatstr) \
+	TESTEXPECTSTR(var, #var, expr, #expr, formatstr)
+
+# define TESTEXPECTVAL(var, expr, expectval, formatstr) \
+	TESTEXPECTSTRVAL(var, #var, expr, #expr, expectval, formatstr)
+
 # define TESTEXPECT(var, expected, formatstr) \
-	TESTEXPECT_(var, #var, ==, "==", expected, formatstr)
-# define TESTEXPECTS(var, expected, varname, formatstr) \
-	TESTEXPECT_(var, varname, ==, "==", expected, formatstr)
+	TESTEXPECTSTRVAL(var, #var, var == expected, #var " == " #expected, expected, formatstr)
+
+# define TESTEXPECTS(var, expected, exprstr, formatstr) \
+	TESTEXPECTSTRVAL(var, #var, var == expected, exprstr, expected, formatstr)
+
 # define TESTEXPECTLT(var, expected, formatstr) \
-	TESTEXPECT_(var, #var, <, "<", expected, formatstr)
+	TESTEXPECTVAL(var, var < expected, expected, formatstr)
+
 # define TESTEXPECTLE(var, expected, formatstr) \
-	TESTEXPECT_(var, #var, <=, "<=", expected, formatstr)
+	TESTEXPECTVAL(var, var <= expected, expected, formatstr)
+
 # define TESTEXPECTGT(var, expected, formatstr) \
-	TESTEXPECT_(var, #var, >, ">", expected, formatstr)
+	TESTEXPECTVAL(var, var > expected, expected, formatstr)
+
 # define TESTEXPECTGE(var, expected, formatstr) \
-	TESTEXPECT_(var, #var, >=, ">=", expected, formatstr)
+	TESTEXPECTVAL(var, var >= expected, expected, formatstr)
 
 void testlogf(const char *file, int severity, const char *format, ...);
 
