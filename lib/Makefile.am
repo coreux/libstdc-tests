@@ -18,3 +18,10 @@ check_LIBRARIES = libtestlib.a
 
 libtestlib_a_SOURCES = testlib.h \
 	testlog.c
+
+dist_noinst_HEADERS = hosted-begin.h hosted-end.h \
+	freestanding-begin.h freestanding-end.h \
+	c90-begin.h c90-end.h \
+	c95-begin.h c95-end.h \
+	c99-begin.h c99-end.h \
+	c11-begin.h c11-end.h
