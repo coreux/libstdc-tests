@@ -15,9 +15,12 @@
  *  limitations under the License.
  */
 
-#include <stdarg.h>
+#include "c90-begin.h"
+#include "freestanding-begin.h"
 
-#include "testlib.h"
+#ifndef TEST_WILL_SKIP
+
+# include <stdarg.h>
 
 struct stdarg_test_struct
 {
@@ -55,3 +58,8 @@ main(void)
 
 	return TEST_PASS;
 }
+
+#endif
+
+#include "freestanding-end.h"
+#include "c90-end.h"

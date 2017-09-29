@@ -15,9 +15,11 @@
  *  limitations under the License.
  */
 
-#include "testlib.h"
+#include "c11-begin.h"
+#include "freestanding-begin.h"
 
-#if __STDC_VERSION__ >= 201112L
+#ifndef TEST_WILL_SKIP
+
 # include <stdalign.h>
 
 int
@@ -26,6 +28,7 @@ main(void)
 	return TEST_SKIP;
 }
 
-#else /* C11 */
-int main(void) { return TEST_SKIP; }
-#endif /* C11 */
+#endif
+
+#include "freestanding-end.h"
+#include "c11-end.h"

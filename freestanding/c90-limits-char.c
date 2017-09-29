@@ -15,10 +15,12 @@
  *  limitations under the License.
  */
 
-#include <limits.h>
+#include "c90-begin.h"
+#include "freestanding-begin.h"
 
-#include "testlib.h"
-#include "testdefs.h"
+#ifndef TEST_WILL_SKIP
+
+# include <limits.h>
 
 int
 main(void)
@@ -42,3 +44,8 @@ main(void)
 	}
 	return TEST_PASS;
 }
+
+#endif
+
+#include "freestanding-end.h"
+#include "c90-end.h"

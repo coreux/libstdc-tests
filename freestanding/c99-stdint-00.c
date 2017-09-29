@@ -15,9 +15,10 @@
  *  limitations under the License.
  */
 
-#include "testlib.h"
+#include "c99-begin.h"
+#include "freestanding-begin.h"
 
-#if __STDC_VERSION__ >= 199901L
+#ifndef TEST_WILL_SKIP
 # include <stdint.h>
 
 int
@@ -26,6 +27,8 @@ main(void)
 	return TEST_SKIP;
 }
 
-#else /* C95 */
-int main(void) { return TEST_SKIP; }
-#endif /* C95 */
+#endif
+
+#include "freestanding-end.h"
+#include "c99-end.h"
+

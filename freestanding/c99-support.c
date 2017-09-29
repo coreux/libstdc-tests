@@ -15,18 +15,22 @@
  *  limitations under the License.
  */
 
-#include "testlib.h"
+#include "freestanding-begin.h"
+
+#ifndef TEST_WILL_SKIP
 
 int
 main(void)
 {
-#ifndef __STDC_VERSION__
-	testlogf(__FILE__, TEST_SKIP, "__STDC_VERSION__ is not defined by this implementation\n");
-	return TEST_SKIP;
-#elif __STDC_VERSION__ >= 199901L
+	if(__STDC_VERSION__ == -1)
+	{
+		testlogf(__FILE__, TEST_SKIP, "__STDC_VERSION__ is not defined by this implementation, expected __STDC_VERSION__ >= 199901L\n");
+		return TEST_SKIP;
+	}
+	TESTEXPECTGE(__STDC_VERSION__, 199901L, "%ld");
 	return TEST_PASS;
-#else
-	testlogf(__FILE__, TEST_SKIP, "__STDC_VERSION__ (%ld) is not >= 199901L\n", __STDC_VERSION__);
-	return TEST_SKIP;
-#endif
 }
+
+#endif
+
+#include "freestanding-end.h"

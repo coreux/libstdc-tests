@@ -15,12 +15,19 @@
  *  limitations under the License.
  */
 
-#include "testlib.h"
+#include "c90-begin.h"
+#include "freestanding-begin.h"
 
-#include <float.h>
+#ifndef TEST_WILL_SKIP
+# include <float.h>
 
 int
 main(void)
 {
 	return TEST_SKIP;
 }
+
+#endif
+
+#include "freestanding-end.h"
+#include "c90-end.h"

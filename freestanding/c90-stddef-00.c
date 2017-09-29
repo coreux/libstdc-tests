@@ -15,9 +15,12 @@
  *  limitations under the License.
  */
 
-#include <stddef.h>
+#include "c90-begin.h"
+#include "freestanding-begin.h"
 
-#include "testlib.h"
+#ifndef TEST_WILL_SKIP
+
+# include <stddef.h>
 
 union offsetof_union {
 	int m1;
@@ -53,3 +56,8 @@ main(void)
 	
 	return TEST_PASS;
 }
+
+#endif
+
+#include "freestanding-end.h"
+#include "c90-end.h"

@@ -15,10 +15,10 @@
  *  limitations under the License.
  */
 
-#include "testlib.h"
-#include "testdefs.h"
+#include "c99-begin.h"
+#include "freestanding-begin.h"
 
-#if __STDC_VERSION__ >= 199901L
+#ifndef TEST_WILL_SKIP
 # include <limits.h>
 
 int
@@ -36,6 +36,7 @@ main(void)
 	return TEST_PASS;
 }
 
-#else /* C99 */
-int main(void) { return TEST_SKIP; }
-#endif /* C99 */
+#endif
+
+#include "freestanding-end.h"
+#include "c99-end.h"

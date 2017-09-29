@@ -15,16 +15,22 @@
  *  limitations under the License.
  */
 
-#include "testlib.h"
+#include "freestanding-begin.h"
+
+#ifndef TEST_WILL_SKIP
 
 int
 main(void)
 {
-#ifndef __STDC__
-	testlogf(__FILE__, TEST_SKIP, "__STDC__ is not defined by this implementation\n");
-	return TEST_SKIP;
-#else
+	if(__STDC__ < 0)
+	{
+		testlogf(__FILE__, TEST_FAIL, "__STDC__ is not defined by this implementation, expected __STDC__ = 1\n");
+		return TEST_FAIL;
+	}
 	TESTEXPECT(__STDC__, 1, "%d");
 	return TEST_PASS;
-#endif
 }
+
+#endif
+
+#include "freestanding-end.h"

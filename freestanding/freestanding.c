@@ -15,16 +15,24 @@
  *  limitations under the License.
  */
 
-#include "testlib.h"
+#include "c90-begin.h"
+#include "freestanding-begin.h"
+
+#ifndef TEST_WILL_SKIP
 
 int
 main(void)
 {
-#ifndef __STDC_HOSTED__
-	testlogf(__FILE__, TEST_SKIP, "SKIP: __STDC_HOSTED__ is not defined by this implementation\n");
-	return TEST_FAIL;
-#else
+	if(__STDC_HOSTED__ < 1)
+	{
+		testlogf(__FILE__, TEST_FAIL, "OK: __STDC_HOSTED__ is not defined by this implementation, expected __STDC_HOSTED__ = 0\n");
+		return TEST_PASS;
+	}
 	TESTEXPECT(__STDC_HOSTED__, 0, "%d");
 	return TEST_PASS;
-#endif
 }
+
+#endif
+
+#include "freestanding-end.h"
+#include "c90-end.h"
