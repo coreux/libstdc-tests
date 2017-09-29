@@ -1,0 +1,18 @@
+#! /bin/sh
+
+## Invoke the C preprocessor as part of the test suite
+
+CC="@CC@"
+CPP="@CPP@"
+top_builddir="@abs_top_builddir@"
+top_srcdir="@abs_top_srcdir@"
+
+STDC_TEST_CPP="@STDC_TEST_CPP@"
+
+if test x"$STDC_TEST_CPP" = x"" ; then
+	echo "run-cpp: no suitable C preprocessor available" >&2
+	exit 127
+fi
+
+exec $STDC_TEST_CPP @STDC_TEST_CPPFLAGS@ @STDC_TEST_DEFS@ $*
+exit $?

@@ -1,0 +1,47 @@
+/* Results of configure checks used by the testsuite.
+ * testdefs.h.in is substituted by config.status to produce testdefs.h
+ */
+
+/* Copyright 2017 Mo McRoberts.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+#ifndef TESTDEFS_H_
+# define TESTDEFS_H_                   1
+
+/* Sizes of types on this system */
+
+# define TEST_SIZEOF_INT               @stdc_tests_sizeof_int@
+# define TEST_SIZEOF_CHAR              @stdc_tests_sizeof_char@
+# define TEST_SIZEOF_SHORT             @stdc_tests_sizeof_short@
+# define TEST_SIZEOF_LONG              @stdc_tests_sizeof_long@
+# define TEST_SIZEOF_LONGLONG          @stdc_tests_sizeof_long_long@
+
+# define TEST_HAVE_UNISTD_H            @stdc_tests_have_unistd_h@
+
+/* Fallback values for conformance macros */
+
+# ifndef __STDC__
+#  define __STDC__                     -1
+# endif
+
+# ifndef __STDC_VERSION__
+#  define __STDC_VERSION__             -1
+# endif
+
+# ifndef __STDC_HOSTED__
+#  define __STDC_HOSTED__              -1
+# endif
+
+#endif /*!TESTDEFS_H_*/

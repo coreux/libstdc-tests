@@ -19,3 +19,5 @@ Makefile
 Makefile.in
 /run-cpp
 /testdefs.h
+!/run-cpp.in
+!/testdefs.h.in
