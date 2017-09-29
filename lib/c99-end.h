@@ -17,9 +17,11 @@
 
 #ifdef TEST_SKIP_C99_
 int
-main(void)
+main(int argc, char **argv)
 {
-	testlogf(__FILE__, TEST_SKIP, "SKIP: a C99 compilation environment is not available (__STDC_VERSION__ = %ld)\n", (long) __STDC_VERSION__);
+	(void) argc;
+	
+	testlogf(argv[0], TEST_SKIP, "SKIP: a C99 compilation environment is not available (__STDC_VERSION__ = %ld)\n", (long) __STDC_VERSION__);
 	return TEST_SKIP;
 }
 #endif
