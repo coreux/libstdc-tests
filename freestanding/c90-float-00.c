@@ -19,12 +19,18 @@
 #include "freestanding-begin.h"
 
 #ifndef TEST_WILL_SKIP
+
 # include <float.h>
 
 int
 main(void)
 {
-	return TEST_SKIP;
+	TESTEXPECTE(FLT_ROUNDS, FLT_ROUNDS >= -1, "%d");
+	TESTEXPECTE(FLT_ROUNDS, FLT_ROUNDS <= 3, "%d");
+	TESTEXPECTE(FLT_RADIX, FLT_RADIX == 2 || FLT_RADIX == 10 || FLT_RADIX == 16, "%d");
+	
+	TESTEXPECTGE(FLT_MANT_DIG, 0, "%d")
+	return TEST_PASS;
 }
 
 #endif
