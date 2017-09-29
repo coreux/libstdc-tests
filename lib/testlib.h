@@ -53,22 +53,22 @@
 	TESTEXPECTSTRVAL(var, #var, expr, #expr, expectval, formatstr)
 
 # define TESTEXPECT(var, expected, formatstr) \
-	TESTEXPECTSTRVAL(var, #var, var == expected, #var " == " #expected, expected, formatstr)
+	TESTEXPECTSTRVAL(var, #var, var == expected, #var, expected, formatstr)
 
 # define TESTEXPECTS(var, expected, exprstr, formatstr) \
 	TESTEXPECTSTRVAL(var, #var, var == expected, exprstr, expected, formatstr)
 
 # define TESTEXPECTLT(var, expected, formatstr) \
-	TESTEXPECTVAL(var, var < expected, expected, formatstr)
+	TESTEXPECTSTR(var, #var, var < expected, #var " < " #expected, formatstr)
 
 # define TESTEXPECTLE(var, expected, formatstr) \
-	TESTEXPECTVAL(var, var <= expected, expected, formatstr)
+	TESTEXPECTSTR(var, #var, var <= expected, #var " <= " #expected, formatstr)
 
 # define TESTEXPECTGT(var, expected, formatstr) \
-	TESTEXPECTVAL(var, var > expected, expected, formatstr)
+	TESTEXPECTSTR(var, #var, var > expected, #var " > " #expected, formatstr)
 
 # define TESTEXPECTGE(var, expected, formatstr) \
-	TESTEXPECTVAL(var, var >= expected, expected, formatstr)
+	TESTEXPECTSTR(var, #var, var >= expected, #var " >= " #expected, formatstr)
 
 void testlogf(const char *file, int severity, const char *format, ...);
 
