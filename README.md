@@ -76,8 +76,6 @@ The following shell variables can be set prior to including `conftests.m4` to ad
 | `STDC_TEST_FREESTANDING_CPPFLAGS` | C preprocessor flags only for freestanding tests |
 | `STDC_TEST_HOSTED_CPPFLAGS` | C preprocessor flags only for hosted tests |
 
-`STDC_TEST_FREESTANDING_CPPFLAGS` defaults to `-U__STDC_HOSTED__ -D__STDC_HOSTED__=0` if not provided.
-
 `AC_SUBST()` will be invoked for each of these variables.
 
 ### Running the tests
