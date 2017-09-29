@@ -31,7 +31,7 @@ main(void)
 	x and_eq 4;
 	y = 7;
 	y &= 4;
-	TESTEXPECTS(x, y, "(x and_eq 4)", "%d");
+	TESTEXPECTSTRVAL(x, "(7 and_eq 4)", x == y, "(7 and_eq 4) == (7 &= 4)", y, "%d");
 
 	TESTEXPECT((126 bitand 12), (126 & 12), "%d");
 
@@ -50,15 +50,15 @@ main(void)
 	x or_eq 31;
 	y = 200;
 	y |= 31;
-	TESTEXPECTS(x, y, "(x or_eq 31)", "%d");
-	
+	TESTEXPECTSTRVAL(x, "(200 or_eq 31)", x == y, "(200 or_eq 31) == (200 |= 31)", y, "%d");
+		
 	TESTEXPECT((254 xor 12), (254 ^ 12), "%d");
 	
 	x = 14;
 	x xor_eq 25;
 	y = 14;
 	y ^= 25;
-	TESTEXPECTS(x, y, "(x xor_eq 25)", "%d");
+	TESTEXPECTSTRVAL(x, "(14 xor_eq 25)", x == y, "(14 xor_eq 25) == (14 ^= 25)", y, "%d");
 
 	return TEST_PASS;
 }
