@@ -54,14 +54,25 @@ AC_SUBST([stdc_tests_sizeof_long_long],[$ac_cv_sizeof_long_long])
 
 dnl Test the test environment itself
 
-save_CPP="$CPP" ; CPP="$STDC_TEST_CPP"
-save_CPPFLAGS="$CPPFLAGS" ; CPPFLAGS="$STDC_TEST_CPPFLAGS $STDC_TEST_DEFS"
-save_DEFS="$DEFS" ; DEFS=""
-save_LDFLAGS="$LDFLAGS" ; LDFLAGS="$STDC_TEST_LDFLAGS"
-save_LIBS="$LIBS" ; LIBS="$STDC_TEST_LIBS"
+dnl Ensure these values are available during tests
 
-CPPFLAGS="$STDC_TEST_CPPFLAGS $STDC_TEST_DEFS $STDC_TEST_UNIX_CPPFLAGS"
-AC_MSG_CHECKING([for <unistd.h> in the test environment])
+top_builddir="${ac_top_builddir}" ; test -z "$top_builddir" && top_builddir=.
+abs_top_builddir="$top_builddir"
+top_srcdir="$srcdir" ; test -z "$top_srcdir" && top_srcddir=.
+abs_top_srcdir="$top_srcdir"
+
+export top_builddir
+export top_srcdir
+
+save_CPP="$CPP" ; CPP="`eval echo $STDC_TEST_CPP`"
+save_CPPFLAGS="$CPPFLAGS" ; CPPFLAGS="`eval echo $STDC_TEST_CPPFLAGS $STDC_TEST_DEFS`"
+save_DEFS="$DEFS" ; DEFS=""
+save_LDFLAGS="$LDFLAGS" ; LDFLAGS="`eval echo $STDC_TEST_LDFLAGS`"
+save_LIBS="$LIBS" ; LIBS="`eval echo $STDC_TEST_LIBS`"
+
+
+CPPFLAGS="`eval echo $STDC_TEST_CPPFLAGS $STDC_TEST_DEFS $STDC_TEST_UNIX_CPPFLAGS`"
+AC_MSG_CHECKING([for unistd.h in the test environment])
 AC_TRY_COMPILE([#include <unistd.h>],,[
   AC_MSG_RESULT([found])
   stdc_tests_have_unistd_h=1],[
