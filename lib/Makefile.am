@@ -21,7 +21,7 @@ libtestlib_a_SOURCES = testlib.h \
 
 dist_noinst_HEADERS = hosted-begin.h hosted-end.h \
 	freestanding-begin.h freestanding-end.h \
-	unix-begin.h unix-end.h \
+	posix-begin.h posix-end.h \
 	c90-begin.h c90-end.h \
 	c95-begin.h c95-end.h \
 	c99-begin.h c99-end.h \

@@ -23,4 +23,6 @@ DEFS = $(STDC_TEST_DEFS)
 LIBS = ../lib/libtestlib.a $(STDC_TEST_LIBS)
 
 check_PROGRAMS = \
-	unix
+	posix posix90 posix93 posix96 posix01 posix08 \
+	xpg3 xpg4 unix95 unix98 unix03 \
+	unixv7

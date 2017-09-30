@@ -15,17 +15,15 @@
  *  limitations under the License.
  */
 
-#include "testdefs.h"
-#include "testlib.h"
+#ifdef TEST_SKIP_POSIX_
 
-#define TEST_UNIX_                     1
+int
+main(int argc, char **argv)
+{
+	(void) argc;
+	
+	testlogf(argv[0], TEST_SKIP, "SKIP: a POSIX.1 environment is not available\n");
+	return TEST_SKIP;
+}
 
-#if! defined(TEST_WILL_SKIP)
-# if TEST_HAVE_UNISTD_H
-#  include <unistd.h>
-# endif
-# if !defined(_POSIX_VERSION) || _POSIX_VERSION < 198808L
-#  define TEST_SKIP_POSIX_             1
-#  define TEST_WILL_SKIP               1
-# endif
 #endif

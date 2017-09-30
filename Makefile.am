@@ -99,7 +99,9 @@ endif
 if STDC_ENABLE_UNIX_TESTS
 
 unix_tests = \
-	unix/unix
+	unix/posix unix/posix90 unix/posix93 unix/posix96 unix/posix01 \
+	unix/posix08 unix/xpg3 unix/xpg4 unix/unix95 unix/unix98 \
+	unix/unix03 unix/unixv7
 
 endif
 

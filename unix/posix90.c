@@ -1,4 +1,4 @@
-/* Test-suite utility library */
+/* Test _POSIX_VERSION for POSIX.1-1990 environments */
 
 /* Copyright 2017 Mo McRoberts.
  *
@@ -15,13 +15,32 @@
  *  limitations under the License.
  */
 
-#ifdef TEST_SKIP_UNIX_
+#define _POSIX_C_SOURCE                1
+
+#include "c90-begin.h"
+
+#ifndef TEST_WILL_SKIP
+
+# ifdef TEST_HAVE_UNISTD_H
+#  include <unistd.h>
+# endif
+
+# ifndef _POSIX_VERSION
+#  define _POSIX_VERSION               -1
+# endif
+
 int
-main(int argc, char **argv)
+main(void)
 {
-	(void) argc;
-	
-	testlogf(argv[0], TEST_SKIP, "SKIP: a POSIX.1 environment is not available\n");
-	return TEST_SKIP;
+	if(_POSIX_VERSION == -1)
+	{
+		testlogf(__FILE__, TEST_SKIP, "_POSIX_VERSION is not defined by this implementation, expected _POSIX_VERSION >= 199009L\n");
+		return TEST_SKIP;
+	}
+	TESTEXPECTGE(_POSIX_VERSION, 199009L, "%ld");
+	return TEST_PASS;
 }
+
 #endif
+
+#include "c90-end.h"

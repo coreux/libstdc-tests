@@ -1,4 +1,4 @@
-/* Test _POSIX_VERSION for Unix environments */
+/* Test _POSIX_VERSION for POSIX.1-1990 environments */
 
 /* Copyright 2017 Mo McRoberts.
  *
@@ -14,6 +14,8 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+
+#define _POSIX_C_SOURCE                199309L
 
 #include "c90-begin.h"
 
@@ -32,10 +34,10 @@ main(void)
 {
 	if(_POSIX_VERSION == -1)
 	{
-		testlogf(__FILE__, TEST_SKIP, "_POSIX_VERSION is not defined by this implementation, expected _POSIX_VERSION >= 199808L\n");
+		testlogf(__FILE__, TEST_SKIP, "_POSIX_VERSION is not defined by this implementation, expected _POSIX_VERSION >= 199309L\n");
 		return TEST_SKIP;
 	}
-	TESTEXPECTGE(_POSIX_VERSION, 199808L, "%ld");
+	TESTEXPECTGE(_POSIX_VERSION, 199309L, "%ld");
 	return TEST_PASS;
 }
 
