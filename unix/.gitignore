@@ -1,7 +1,5 @@
-/c90-*
-/c95-*
-/c99-*
-/c11-*
-/unix
-/unix*-*
+*
+!.gitignore
+!Makefile.am
 !*.c
+!*.h
