@@ -17,7 +17,7 @@
 
 #define _POSIX_C_SOURCE                199506L
 
-#include "c90-begin.h"
+#include "c95-begin.h"
 
 #ifndef TEST_WILL_SKIP
 
@@ -43,4 +43,4 @@ main(void)
 
 #endif
 
-#include "c90-end.h"
+#include "c95-end.h"

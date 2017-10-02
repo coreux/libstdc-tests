@@ -1,4 +1,4 @@
-## C Library hosted environment tests
+## C Library C95 hosted environment tests
 
 ## Copyright 2017 Mo McRoberts.
 ##
@@ -15,26 +15,13 @@
 ##  limitations under the License.
 
 AM_CPPFLAGS = $(STDC_TEST_CPPFLAGS) \
-	-I${builddir}/.. -I${srcdir}/.. \
-	-I${builddir}/../lib -I${srcdir}/../lib \
+	-I${builddir}/../.. -I${srcdir}/../.. \
+	-I${builddir}/../../lib -I${srcdir}/../../lib \
 	$(STDC_TEST_INCLUDES) $(STDC_TEST_HOSTED_CPPFLAGS)
 AM_LDFLAGS = $(STDC_TEST_LDFLAGS)
-DEFS = $(STDC_TEST_DEFS)
-LIBS = ../lib/libtestlib.a $(STDC_TEST_LIBS)
+DEFS = $(STDC_TEST_DEFS) -DSTDC_TEST_PATH="c95/hosted"
+LIBS = ../../lib/libtestlib.a $(STDC_TEST_LIBS)
 
 check_PROGRAMS = \
-	hosted \
-	c90-support \
-	c90-float-00 \
-	c90-limits-int c90-limits-short c90-limits-long c90-limits-char \
-	c90-stdarg-00 \
-	c90-stddef-00 \
 	c95-support \
-	c95-iso646-00 \
-	c99-support \
-	c99-limits-longlong \
-	c99-stdbool-00 \
-	c99-stdint-00 \
-	c11-support \
-	c11-stdalign-00 \
-	c11-stdnoreturn-00
+	c95-iso646-00

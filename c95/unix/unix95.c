@@ -1,4 +1,4 @@
-/* Test _XOPEN_VERSION for UNIX 98 environments */
+/* Test _XOPEN_VERSION for UNIX 95 (XPG4v2, SUS) environments */
 
 /* Copyright 2017 Mo McRoberts.
  *
@@ -15,7 +15,9 @@
  *  limitations under the License.
  */
 
-#define _XOPEN_SOURCE                  500
+#define _POSIX_C_SOURCE                1
+#define _XOPEN_SOURCE                  4
+#define _XOPEN_EXTENDED                1
 
 #include "c90-begin.h"
 
@@ -34,11 +36,16 @@ main(void)
 {
 	if(_XOPEN_VERSION == -1)
 	{
-		testlogf(__FILE__, TEST_SKIP, "_XOPEN_VERSION is not defined by this implementation, expected _XOPEN_VERSION >= 500\n");
+		testlogf(__FILE__, TEST_SKIP, "_XOPEN_VERSION is not defined by this implementation, expected _XOPEN_VERSION >= 4\n");
 		return TEST_SKIP;
 	}
-	TESTEXPECTGE(_XOPEN_VERSION, 500, "%ld");
+# ifndef _XOPEN_UNIX
+	testlogf(__FILE__, TEST_SKIP, "_XOPEN_UNIX is not defined by this implementation\n");
+	return TEST_SKIP;
+# else
+	TESTEXPECTGE(_XOPEN_VERSION, 4, "%ld");
 	return TEST_PASS;
+# endif
 }
 
 #endif
